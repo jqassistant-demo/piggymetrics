@@ -19,6 +19,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
 		<java.version>1.8</java.version>
+		<jqassistant.version>1.7.0</jqassistant.version>
 	</properties>
 
 	<dependencyManagement>
@@ -32,7 +33,31 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.buschmais.jqassistant</groupId>
+				<artifactId>jqassistant-maven-plugin</artifactId>
+				<version>${jqassistant.version}</version>
+				<executions>
+					<execution>
+						<id>default-cli</id>
+						<goals>
+							<goal>scan</goal>
+							<goal>analyze</goal>
+						</goals>
+						<configuration>
+							<groups>
+								<group>spring-boot:Default</group>
+							</groups>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
 	<modules>
 		<module>config</module>
 		<module>monitoring</module>
