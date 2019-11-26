@@ -51,10 +51,18 @@
 							<failOnSeverity>BLOCKER</failOnSeverity>
 							<groups>
 								<group>spring-boot:Default</group>
+								<group>default</group>
 							</groups>
 						</configuration>
 					</execution>
 				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.jqassistant.contrib.plugin</groupId>
+						<artifactId>jqassistant-asciidoc-report-plugin</artifactId>
+						<version>1.7.0</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>

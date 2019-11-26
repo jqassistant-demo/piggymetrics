@@ -1,0 +1,63 @@
+:toc: left
+= Piggy Metrics
+
+[[default]]
+[role=group,includesConstraints="naming:*",includesConcepts="report:*"]
+== Coding Guidelines
+
+=== Naming Rules
+
+This section describes the naming rules that apply for the project.
+
+[[naming:TypeMustBeLocatedInPackageContainingArtifactId]]
+[source,cypher,role=constraint]
+.Every Java type must be located within a package with the name `com.piggymetrics.<serviceId>` where serviceId is the artifactId of the containing Maven module without the trailing "_service" suffix.
+----
+MATCH
+  (artifact:Maven:Artifact)
+WITH
+  artifact, "com.piggymetrics." + replace(artifact.name,"-service","") as expectedPackage
+MATCH
+  (artifact)-[:CONTAINS]->(type:Type)
+WHERE NOT
+  type.fqn starts with expectedPackage
+RETURN
+  type as Type, expectedPackage as `Expected Package`
+ORDER BY
+  type.fqn
+----
+
+[[naming:SpringServicesMustBeLocatedInServicePackage]]
+[source,cypher,role=constraint,requiresConcepts="spring-component:Service"]
+.Spring services (i.e. classes annotated with @Service) must be located in "service" packages.
+----
+MATCH
+  (package:Package)-[:CONTAINS]->(service:Spring:Service)
+WHERE
+  package.name <> "service"
+RETURN
+  service as Service
+----
+
+=== Reports
+
+This section provides reports about the project structure.
+
+[[report:ComponentDependency]]
+[source,cypher,role=concept,requiresConcepts="spring-component:Component,spring-component:VirtualDependency",reportType="plantuml-component-diagram"]
+.Spring Injectables and their dependencies, grouped by service.
+----
+MATCH
+  (artifact:Main:Artifact)-[:CONTAINS]->(injectable:Spring:Injectable)
+OPTIONAL MATCH
+  (injectable)-[dependsOn:DEPENDS_ON|VIRTUAL_DEPENDS_ON]->(:Spring:Injectable)
+RETURN
+  {
+    role: "graph",
+    parent: artifact,
+    nodes: collect(injectable),
+    relationships: collect(dependsOn)
+  }
+----
+
+
