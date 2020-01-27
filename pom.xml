@@ -19,7 +19,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
 		<java.version>1.8</java.version>
-		<jqassistant.version>1.7.0</jqassistant.version>
+		<jqassistant.version>1.8.0</jqassistant.version>
 	</properties>
 
 	<dependencyManagement>
@@ -56,13 +56,6 @@
 						</configuration>
 					</execution>
 				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>org.jqassistant.contrib.plugin</groupId>
-						<artifactId>jqassistant-asciidoc-report-plugin</artifactId>
-						<version>1.7.0</version>
-					</dependency>
-				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
