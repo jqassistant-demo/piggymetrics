@@ -48,8 +48,10 @@
 							<goal>analyze</goal>
 						</goals>
 						<configuration>
+							<failOnSeverity>BLOCKER</failOnSeverity>
 							<groups>
 								<group>spring-boot:Strict</group>
+								<group>default</group>
 							</groups>
 						</configuration>
 					</execution>
