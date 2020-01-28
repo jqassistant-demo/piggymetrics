@@ -19,7 +19,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
 		<java.version>1.8</java.version>
-		<jqassistant.version>1.7.0</jqassistant.version>
+		<jqassistant.version>1.8.0</jqassistant.version>
 	</properties>
 
 	<dependencyManagement>
@@ -49,7 +49,7 @@
 						</goals>
 						<configuration>
 							<groups>
-								<group>spring-boot:Default</group>
+								<group>spring-boot:Strict</group>
 							</groups>
 						</configuration>
 					</execution>
