@@ -44,7 +44,7 @@ RETURN
 This section provides reports about the project structure.
 
 [[report:ComponentDependency]]
-[source,cypher,role=concept,requiresConcepts="spring-component:Component,spring-component:VirtualDependency",reportType="plantuml-component-diagram"]
+[source,cypher,role=concept,requiresConcepts="spring-component:Component,java:VirtualDependsOn",reportType="plantuml-component-diagram"]
 .Spring Injectables and their dependencies, grouped by service.
 ----
 MATCH
